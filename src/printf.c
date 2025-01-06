@@ -6,12 +6,11 @@
 /*   By: lomont <lomont@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 01:36:50 by lomont            #+#    #+#             */
-/*   Updated: 2024/12/28 03:23:46 by lomont           ###   ########.fr       */
+/*   Updated: 2025/01/06 03:33:50 by lomont           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/libft.h"
-#include "../headers/printf.h"
+#include "../headers/ft_printf.h"
 
 int	ft_printf(const char *string, ...)
 {
@@ -26,13 +25,13 @@ int	ft_printf(const char *string, ...)
 	{
 		if (string[i] == '%' && string[i + 1] == 'c')
 		{
-			counter += ft_printchar_fd(va_arg(ptr, int), 1);
+			counter += ft_printchar(va_arg(ptr, int));
 			//printf("\nCounter est : %d\n", counter);
 			i += 2;
 		}
 		else if (string[i] == '%' && string[i + 1] == 's')
 		{
-			counter += ft_printstr_fd(va_arg(ptr, char *), 1);
+			counter += ft_printstr(va_arg(ptr, char *));
 			//printf("\nCounter est : %d\n", counter);
 			i += 2;
 		}
@@ -44,37 +43,37 @@ int	ft_printf(const char *string, ...)
 		}
 		else if (string[i] == '%' && string[i + 1] == 'd')
 		{
-			counter += ft_printnbr_fd(va_arg(ptr, int), 1);
+			counter += ft_printnbr(va_arg(ptr, long int));
 			//printf("\nCounter est : %d\n", counter);
 			i += 2;
 		}
 		else if (string[i] == '%' && string[i + 1] == 'i')
 		{
-			counter += ft_printnbr_fd(va_arg(ptr, int), 1);
+			counter += ft_printnbr(va_arg(ptr, long int));
 			//printf("\nCounter est : %d\n", counter);
 			i += 2;
 		}
 		else if (string[i] == '%' && string[i + 1] == 'u')
 		{
-			counter += ft_putunsigned_fd(va_arg(ptr, unsigned int), 1);
+			counter += ft_putunsigned(va_arg(ptr, unsigned int));
 			//printf("\nCounter est : %d\n", counter);
 			i += 2;
 		}
 		else if (string[i] == '%' && string[i + 1] == 'x')
 		{
-			counter += ft_hexadecimal_lower(va_arg(ptr, int));
+			counter += ft_puthexa_lower(va_arg(ptr, int));
 			//printf("\nCounter est : %d\n", counter);
 			i += 2;
 		}
 		else if (string[i] == '%' && string[i + 1] == 'X')
 		{
-			counter += ft_hexadecimal_upper(va_arg(ptr, int));
+			counter += ft_puthexa_upper(va_arg(ptr, int));
 			//printf("\nCounter est : %d\n", counter);
 			i += 2;
 		}
 		else if (string[i] == '%' && string[i + 1] == '%')
 		{
-			counter += ft_printchar_fd('%', 1);
+			counter += ft_printchar('%');
 			//printf("\nCounter est : %d\n", counter);
 			i += 2;
 		}
@@ -89,11 +88,11 @@ int	ft_printf(const char *string, ...)
 	return (counter);
 }
 
-int main(void)
-{
-	//int i;
-	//printf("%d\n",printf("%p%s%c%d\n", &i, "SALUT TU VAS BIEN", 'c', 300));
-	//printf("%d\n",ft_printf("%p%s%c%d\n", &i, "SALUT TU VAS BIEN", 'c', 300));
-	printf("Nombre de caracteres : %d\n",ft_printf("%% %% %X %X\n", 100, -100));
-	printf("Nombre de caracteres : %d\n",printf("%% %% %X %X\n", 100, -100));
-}
+// int main(void)
+// {
+// 	//int i;
+// 	//printf("%d\n",printf("%p%s%c%d\n", &i, "SALUT TU VAS BIEN", 'c', 300));
+// 	//printf("%d\n",ft_printf("%p%s%c%d\n", &i, "SALUT TU VAS BIEN", 'c', 300));
+// 	printf("Nombre de caracteres : %d\n",ft_printf(" %d %d ", 2147483647, -2147483647)); //, 2147483647, -2147483648, 4294967295, 0, -42));
+// 	printf("Nombre de caracteres : %d\n",printf(" %d %d ", 2147483647, -2147483647)); //, 2147483647, -2147483648, 4294967295, 0, -42));
+// }

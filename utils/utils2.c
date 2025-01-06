@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lomont <lomont@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 00:04:35 by miniklar          #+#    #+#             */
-/*   Updated: 2024/11/13 01:07:37 by lomont           ###   ########.fr       */
+/*   Created: 2025/01/06 01:03:21 by lomont            #+#    #+#             */
+/*   Updated: 2025/01/06 02:56:46 by lomont           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../headers/ft_printf.h"
 
 void	*ft_memset(void *s, int c, size_t n)
 {
@@ -23,10 +23,43 @@ void	*ft_memset(void *s, int c, size_t n)
 		ptr[i++] = (unsigned char) c;
 	return (s);
 }
-/*int main(void)
+
+size_t	ft_strlen(const char *s)
 {
-	char    buffer[100] = "SALUT TU VQS VUEN AFWFWA";
-	
-	ft_memset(buffer, '7', 20);
-	printf("%s\n", buffer);
-}*/
+	int	i;
+
+	i = 0;
+	while (*s)
+	{
+		i++;
+		s++;
+	}
+	return (i);
+}
+int	ft_toupper(int c)
+{
+	if (c >= 97 && c <= 122)
+	{
+		c = c - 32;
+		return (c);
+	}
+	else
+		return (c);
+}
+void	ft_putnbr_fd(int n)
+{
+	if (n == -2147483648)
+	{
+		ft_printchar('-');
+		ft_printchar('2');
+		n = 147483648;
+	}
+	if (n < 0)
+	{
+		ft_printchar('-');
+		n = -n;
+	}
+	if (n >= 10)
+		ft_putnbr_fd(n / 10);
+	ft_printchar((n % 10) + '0');
+}

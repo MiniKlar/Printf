@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lomont <lomont@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 03:06:04 by lomont            #+#    #+#             */
-/*   Updated: 2024/12/28 03:22:16 by lomont           ###   ########.fr       */
+/*   Updated: 2025/01/06 03:28:12 by lomont           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <stdlib.h>
 # include <string.h>
@@ -19,12 +19,18 @@
 # include <unistd.h>
 # include <stdarg.h>
 
-int		ft_printnbr_fd(int n, int fd);
-int		ft_printchar_fd(char c, int fd);
-int		ft_printstr_fd(char *s, int fd);
-int		ft_putunsigned_fd(unsigned int n, int fd);
-int 	ft_hexadecimal_lower(int n);
-int		ft_hexadecimal_upper(int n);
+int		ft_printf(const char *string, ...);
+int		ft_printnbr(int n);
+int		ft_printchar(char c);
+int		ft_printstr(char *s);
+int		ft_putunsigned(unsigned int n);
+int		ft_puthexa_upper(unsigned int n);
+int 	ft_puthexa_lower(unsigned int n);
 int 	ft_putptr_fd(void *ptr);
 char 	*ft_hexadecimal_ptr(unsigned long n);
+void	*ft_memset(void *s, int c, size_t n);
+size_t	ft_strlen(const char *s);
+int		ft_toupper(int c);
+void	ft_putnbr_fd(int n);
+
 #endif
