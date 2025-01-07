@@ -1,41 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puthexa.c                                       :+:      :+:    :+:   */
+/*   ft_hexaptr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lomont <lomont@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 02:46:55 by lomont            #+#    #+#             */
-/*   Updated: 2025/01/06 03:03:14 by lomont           ###   ########.fr       */
+/*   Created: 2025/01/08 00:00:45 by lomont            #+#    #+#             */
+/*   Updated: 2025/01/08 00:04:01 by lomont           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
 
-int ft_puthexa_lower(unsigned int n)
+int	ft_hexaptr(unsigned long address)
 {
-	char *base16;
-	int counter;
-	
-	counter = 0;
-	base16 ="0123456789abcdef";
-	if (n >= 16)
-		ft_puthexa_lower(n / 16);
-	counter += ft_printchar(base16[n % 16]);
+	char	*base16;
+	int		counter;
 
+	base16 = "0123456789abcdef";
+	counter = 0;
+	if (address >= 16)
+		counter += ft_hexaptr((address / 16));
+	counter += ft_printchar(base16[address % 16]);
 	return (counter);
 }
 
-int ft_puthexa_upper(unsigned int n)
+int	ft_print_hexaptr(void *n)
 {
-	char *base16;
-	int counter;
-	
-	counter = 0;
-	base16 ="0123456789ABCDEF";
-	if (n >= 16)
-		ft_puthexa_upper(n / 16);
-	counter += ft_printchar(base16[16 - (n % 16)]);
+	int				counter;
+	unsigned long	address;
 
+	address = (unsigned long) n;
+	counter = 0;
+	if (address == 0)
+	{
+		write (1, "(nil)", 5);
+		return (counter += 5);
+	}
+	counter += ft_printstr("0x");
+	counter += ft_hexaptr(address);
 	return (counter);
 }

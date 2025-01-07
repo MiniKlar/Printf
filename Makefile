@@ -1,10 +1,10 @@
 NAME = libftprintf.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-SRC = 	./src/printf.c \
+SRC = 	./src/ft_printf.c \
 		./utils/utils.c \
-		./utils/utils2.c \
-		./utils/ft_puthexa.c \
+		./utils/ft_hexa.c \
+		./utils/ft_hexaptr.c \
 
 OBJ = $(SRC:.c=.o)
 
